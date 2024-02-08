@@ -2,7 +2,6 @@
 function getRandomTime(){
 	return Math.floor(Math.random()*3000)+1000;
 }
-console.log(getRandomTime());
 
 
 function createPromise(id) {
@@ -20,9 +19,10 @@ const promises = [
 	createPromise('Promise 2'),
 	createPromise('Promise 3')
 ]
-
+const startTime = performance.now();
 Promise.all(promises)
 .then((result)=>{
+	const endTime =performance.now();
 	 // console.log(result);
 	const table = document.querySelector("#output");
 	result.forEach((data)=>{
@@ -33,7 +33,8 @@ Promise.all(promises)
 		cell2.innerText = data.time.toFixed(); 
 		 // console.log(data);
 	})
-	let totalTime= result.reduce((total,curr)=>(total +=curr.time),0);
+	// let totalTime= result.reduce((total,curr)=>(total +=curr.time),0);
+	let totalTime =  (endTime - startTime) / 1000;
 	let row = table.insertRow();
 	let cell1 = row.insertCell(0);
 	let cell2 = row.insertCell(1);
@@ -43,6 +44,8 @@ Promise.all(promises)
 	table.deleteRow(0);
 })
 .catch((error)=>console.log(error))
+
+
 
 
 
