@@ -2,7 +2,8 @@
 function getRandomTime(){
 	return Math.floor(Math.random()*3000)+1000;
 }
-// console.log(getRandomTime());
+console.log(getRandomTime());
+
 
 function createPromise(id) {
 	 return new Promise((resolve,reject)=>{
@@ -29,7 +30,7 @@ Promise.all(promises)
 		let cell1 = row.insertCell(0);
 		let cell2 = row.insertCell(1);
 		cell1.innerText = data.id;
-		cell2.innerText = data.time; 
+		cell2.innerText = data.time.toFixed(); 
 		 // console.log(data);
 	})
 	let totalTime= result.reduce((total,curr)=>(total +=curr.time),0);
@@ -37,11 +38,13 @@ Promise.all(promises)
 	let cell1 = row.insertCell(0);
 	let cell2 = row.insertCell(1);
 	cell1.innerText = "Total";
-	cell2.innerText = totalTime;
+	cell2.innerText = totalTime.toFixed(3);
 	// console.log(totalTime);
 	table.deleteRow(0);
 })
 .catch((error)=>console.log(error))
+
+
 
 
 
